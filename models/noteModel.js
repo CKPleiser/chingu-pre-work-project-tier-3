@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+// const User = require('./userModel');
 
 const noteSchema = new mongoose.Schema({
   title: {
@@ -13,6 +14,7 @@ const noteSchema = new mongoose.Schema({
     trim: true,
     required: [true, 'A note must have a body']
   }
+  // To Do: Add User Relationship
 });
 
 const Note = mongoose.model('Note', noteSchema);
