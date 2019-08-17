@@ -1,11 +1,12 @@
 const express = require('express');
+const authController = require('./../controllers/authController');
 const noteController = require('./../controllers/noteController');
 
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
 router
   .route('/')
   .get(noteController.getAllNotes)
-  .post(noteController.createNote);
+  .post(authController.protect, noteController.createNote);
 
 module.exports = router;

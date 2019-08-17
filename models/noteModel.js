@@ -13,8 +13,12 @@ const noteSchema = new mongoose.Schema({
     type: String,
     trim: true,
     required: [true, 'A note must have a body']
+  },
+  user: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
+    required: [true, 'A note must belong to a User']
   }
-  // To Do: Add User Relationship
 });
 
 const Note = mongoose.model('Note', noteSchema);
