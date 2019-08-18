@@ -1,0 +1,10 @@
+section.submit-form
+  form(action='/create_note', method='POST')
+    | Title:
+    label
+    input(type='text', name='title', value='').form__input
+    | Body:
+    label
+    input(type='text', name='note', value='').form__input
+  input(type='submit', value='Submit').btn
+
