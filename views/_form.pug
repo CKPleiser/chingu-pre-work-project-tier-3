@@ -1,10 +1,18 @@
-section.submit-form
-  form(action='/create_note', method='POST')
-    | Title:
-    label
-    input(type='text', name='title', value='').form__input
-    | Body:
-    label
-    input(type='text', name='note', value='').form__input
-  input(type='submit', value='Submit').btn
+h1  Digital Journal | Chingu Project Tier 3
+form(action="." method="POST")
+.form-group
+  label(for="title") Title:
+  input.form-control(
+    type="text"
+    id="title"
+    name="title"
+  )
 
+.form-group
+  label(for="note") Body:
+  textarea.form-control(
+    id="note"
+    rows="3"
+  )
+
+button.btn.btn-primary Submit

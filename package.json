@@ -23,6 +23,8 @@
   "homepage": "https://github.com/CKPleiser/chingu-pre-work-project-tier-3#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "bootstrap": "^4.3.1",
+    "cookie-parser": "^1.4.4",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",

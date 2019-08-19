@@ -1,0 +1,15 @@
+extends base
+
+block content
+  include _form
+  h1.mt-5= title
+  .row
+    each note in notes
+      .col-md-4
+        .card.m-1
+          .card-body
+            h5.card-title= note.title
+            p.card-text= note.body
+            .btn-group
+              button.btn.btn-link Edit
+              button.btn.btn-danger Delete

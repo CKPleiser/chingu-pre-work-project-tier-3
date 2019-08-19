@@ -1,0 +1,26 @@
+extends base
+
+block content
+  h1  Log Into Your Account
+  form#login(method="POST")
+    .form-group
+      label(for="email") E-Mail:
+      input.form-control(
+        type="email"
+        id="email"
+        name="email"
+        placeholder="you@example.com"
+        required
+      )
+
+    .form-group
+      label(for="password") Password:
+      input.form-control(
+        type="password"
+        id="password"
+        name="password"
+      )
+
+    button.btn.btn-primary Log In
+
+  script(src='/js/login.js')
