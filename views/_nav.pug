@@ -10,7 +10,13 @@ nav.navbar.navbar-nav.navbar-expand-lg.navbar-light.bg-light.mb-4
     span.navbar-toggler-icon
   .collapse.navbar-collapse(id="navbarNav")
     ul.navbar-nav.ml-auto
+    if user
+      li.nav-item.avatar.dropdown
+        a.nav-link(href="#")
+          img.rounded-circle.z-depth-0(src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg", width="40px")
+      a.btn.btn-danger.ml-3(href="#") Logout
+    else
       li.nav-item
         a.nav-link(href="/login") Log In
       li.nav-item
-        a.nav-link(href="#") Sign up
+        a.btn.btn-success.ml-3(href="#") Sign up
