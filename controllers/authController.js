@@ -86,7 +86,10 @@ exports.protect = catchAsync(async (req, res, next) => {
 
   if (!token) {
     return next(
-      new AppError('You are not logged in! Please log in to get access', 400)
+      new AppError(
+        'You are not logged in! Please log in or register to create notes!',
+        400
+      )
     );
   }
 

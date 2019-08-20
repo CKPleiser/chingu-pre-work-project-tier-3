@@ -1,6 +1,7 @@
 const Note = require('./../models/noteModel');
 const catchAsync = require('./../utils/catchAsync');
 // const AppError = require('./../utils/appError');
+const factory = require('./handlerFactory');
 
 exports.getAllNotes = catchAsync(async (req, res, next) => {
   let filter = {};
@@ -15,6 +16,8 @@ exports.getAllNotes = catchAsync(async (req, res, next) => {
     }
   });
 });
+
+exports.deleteNote = factory.deleteOne(Note);
 
 exports.createNote = catchAsync(async (req, res, next) => {
   // Allow nested routes

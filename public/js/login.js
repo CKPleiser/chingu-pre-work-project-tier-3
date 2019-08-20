@@ -38,6 +38,20 @@ export const logout = async () => {
     if (res.data.status === 'success') location.reload(true);
 
   } catch(err) {
-    showAlert('error', 'Error logging out. Try again!')
+    showAlert('danger', 'Error logging out. Try again!')
+  }
+}
+
+export const deleteNote = async (id) => {
+  try {
+    const res = await axios({
+      method: 'DELETE',
+      url: `http://localhost:3000/api/v1/notes/${id}`
+    });
+
+    location.reload(true);
+
+  } catch (err) {
+    showAlert('danger', 'You must be logged in to delete the note')
   }
 }
