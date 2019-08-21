@@ -11,7 +11,7 @@ export const submit = async (title, body) => {
       url: 'http://localhost:3000/api/v1/notes',
       data: {
         title,
-        body
+        body,
       }
     });
 

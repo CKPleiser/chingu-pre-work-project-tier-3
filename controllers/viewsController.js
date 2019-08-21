@@ -9,7 +9,7 @@ exports.home = catchAsync(async (req, res) => {
 
 exports.getOverview = catchAsync(async (req, res) => {
   // 1) Get Note Data from Collection
-  const notes = await Note.find();
+  const notes = await Note.find({ user: req.user.id });
 
   // 2) Build Template
 
@@ -23,5 +23,11 @@ exports.getOverview = catchAsync(async (req, res) => {
 exports.getLoginForm = catchAsync(async (req, res) => {
   res.status(200).render('login', {
     title: 'Log into your account'
+  });
+});
+
+exports.getRegistrationForm = catchAsync(async (req, res) => {
+  res.status(200).render('register', {
+    title: 'Register for free'
   });
 });

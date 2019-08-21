@@ -8310,7 +8310,7 @@ module.exports = require('./lib/axios');
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.deleteNote = exports.logout = exports.login = void 0;
+exports.deleteNote = exports.logout = exports.login = exports.signup = void 0;
 
 var _alerts = require("./alerts");
 
@@ -8322,26 +8322,28 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-var login =
+var signup =
 /*#__PURE__*/
 function () {
   var _ref = _asyncToGenerator(
   /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee(email, password) {
+  regeneratorRuntime.mark(function _callee(name, email, password, password_confirm) {
     var res;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            console.log(email, password);
+            console.log(name, email, password, password_confirm);
             _context.prev = 1;
             _context.next = 4;
             return (0, _axios.default)({
               method: 'POST',
-              url: 'http://localhost:3000/api/v1/users/login',
+              url: 'http://localhost:3000/api/v1/users/signup',
               data: {
+                name: name,
                 email: email,
-                password: password
+                password: password,
+                passwordConfirm: password_confirm
               }
             });
 
@@ -8349,7 +8351,7 @@ function () {
             res = _context.sent;
 
             if (res.data.status === 'success') {
-              (0, _alerts.showAlert)('success', 'Logged in successfully');
+              (0, _alerts.showAlert)('success', 'Registered successfully');
               window.setTimeout(function () {
                 location.assign('/overview');
               }, 1500);
@@ -8371,8 +8373,64 @@ function () {
     }, _callee, null, [[1, 8]]);
   }));
 
-  return function login(_x, _x2) {
+  return function signup(_x, _x2, _x3, _x4) {
     return _ref.apply(this, arguments);
+  };
+}();
+
+exports.signup = signup;
+
+var login =
+/*#__PURE__*/
+function () {
+  var _ref2 = _asyncToGenerator(
+  /*#__PURE__*/
+  regeneratorRuntime.mark(function _callee2(email, password) {
+    var res;
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            console.log(email, password);
+            _context2.prev = 1;
+            _context2.next = 4;
+            return (0, _axios.default)({
+              method: 'POST',
+              url: 'http://localhost:3000/api/v1/users/login',
+              data: {
+                email: email,
+                password: password
+              }
+            });
+
+          case 4:
+            res = _context2.sent;
+
+            if (res.data.status === 'success') {
+              (0, _alerts.showAlert)('success', 'Logged in successfully');
+              window.setTimeout(function () {
+                location.assign('/overview');
+              }, 1500);
+            }
+
+            _context2.next = 11;
+            break;
+
+          case 8:
+            _context2.prev = 8;
+            _context2.t0 = _context2["catch"](1);
+            (0, _alerts.showAlert)('danger', _context2.t0.response.data.message);
+
+          case 11:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[1, 8]]);
+  }));
+
+  return function login(_x5, _x6) {
+    return _ref2.apply(this, arguments);
   };
 }();
 
@@ -8381,53 +8439,9 @@ exports.login = login;
 var logout =
 /*#__PURE__*/
 function () {
-  var _ref2 = _asyncToGenerator(
-  /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee2() {
-    var res;
-    return regeneratorRuntime.wrap(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            _context2.prev = 0;
-            _context2.next = 3;
-            return (0, _axios.default)({
-              method: 'GET',
-              url: 'http://localhost:3000/api/v1/users/logout'
-            });
-
-          case 3:
-            res = _context2.sent;
-            if (res.data.status === 'success') location.reload(true);
-            _context2.next = 10;
-            break;
-
-          case 7:
-            _context2.prev = 7;
-            _context2.t0 = _context2["catch"](0);
-            (0, _alerts.showAlert)('danger', 'Error logging out. Try again!');
-
-          case 10:
-          case "end":
-            return _context2.stop();
-        }
-      }
-    }, _callee2, null, [[0, 7]]);
-  }));
-
-  return function logout() {
-    return _ref2.apply(this, arguments);
-  };
-}();
-
-exports.logout = logout;
-
-var deleteNote =
-/*#__PURE__*/
-function () {
   var _ref3 = _asyncToGenerator(
   /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee3(id) {
+  regeneratorRuntime.mark(function _callee3() {
     var res;
     return regeneratorRuntime.wrap(function _callee3$(_context3) {
       while (1) {
@@ -8436,20 +8450,20 @@ function () {
             _context3.prev = 0;
             _context3.next = 3;
             return (0, _axios.default)({
-              method: 'DELETE',
-              url: "http://localhost:3000/api/v1/notes/".concat(id)
+              method: 'GET',
+              url: 'http://localhost:3000/api/v1/users/logout'
             });
 
           case 3:
             res = _context3.sent;
-            location.reload(true);
+            if (res.data.status === 'success') location.assign('/');
             _context3.next = 10;
             break;
 
           case 7:
             _context3.prev = 7;
             _context3.t0 = _context3["catch"](0);
-            (0, _alerts.showAlert)('danger', 'You must be logged in to delete the note');
+            (0, _alerts.showAlert)('danger', 'Error logging out. Try again!');
 
           case 10:
           case "end":
@@ -8459,8 +8473,52 @@ function () {
     }, _callee3, null, [[0, 7]]);
   }));
 
-  return function deleteNote(_x3) {
+  return function logout() {
     return _ref3.apply(this, arguments);
+  };
+}();
+
+exports.logout = logout;
+
+var deleteNote =
+/*#__PURE__*/
+function () {
+  var _ref4 = _asyncToGenerator(
+  /*#__PURE__*/
+  regeneratorRuntime.mark(function _callee4(id) {
+    var res;
+    return regeneratorRuntime.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.prev = 0;
+            _context4.next = 3;
+            return (0, _axios.default)({
+              method: 'DELETE',
+              url: "http://localhost:3000/api/v1/notes/".concat(id)
+            });
+
+          case 3:
+            res = _context4.sent;
+            location.reload(true);
+            _context4.next = 10;
+            break;
+
+          case 7:
+            _context4.prev = 7;
+            _context4.t0 = _context4["catch"](0);
+            (0, _alerts.showAlert)('danger', 'You must be logged in to delete the note');
+
+          case 10:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4, null, [[0, 7]]);
+  }));
+
+  return function deleteNote(_x7) {
+    return _ref4.apply(this, arguments);
   };
 }();
 
@@ -8793,11 +8851,23 @@ var _login = require("./login");
 var _submit = require("./submit");
 
 // DOM Elements;
+var signupForm = document.querySelector('#signup');
 var loginForm = document.querySelector('#login');
 var submitForm = document.querySelector('#submit_note');
 var logoutBtn = document.querySelector('#logout');
-var editBtn = document.querySelector('#edit');
 var deleteButtons = document.querySelectorAll('.btn-delete');
+var editButtons = document.querySelectorAll('.btn-edit');
+
+if (signupForm) {
+  signupForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+    var password_confirm = document.getElementById('password_confirm').value;
+    (0, _login.signup)(name, email, password, password_confirm);
+  });
+}
 
 if (loginForm) {
   loginForm.addEventListener('submit', function (e) {
@@ -8815,6 +8885,14 @@ if (deleteButtons.length) {
     deleteButtons[i].addEventListener('click', function () {
       var id = this.getAttribute("data-id");
       (0, _login.deleteNote)(id);
+    });
+  }
+}
+
+if (editButtons.length) {
+  for (var _i = 0; _i < editButtons.length; _i++) {
+    editButtons[_i].addEventListener('click', function () {
+      alert('Sorry Chingu. Edit routes haven\'t been implemented yet');
     });
   }
 }
@@ -8855,7 +8933,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52949" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62234" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -12,11 +12,12 @@ nav.navbar.navbar-nav.navbar-expand-lg.navbar-light.bg-light.mb-4
     ul.navbar-nav.ml-auto
     if user
       li.nav-item.avatar.dropdown
-        a.nav-link(href="#")
-          img.rounded-circle.z-depth-0(src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg", width="40px")
+        if user.image
+          a.nav-link(href="#")
+            img.rounded-circle.z-depth-0(src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg", width="40px")
       a#logout.btn.btn-danger.ml-3() Logout
     else
       li.nav-item
         a.nav-link(href="/login") Log In
       li.nav-item
-        a.btn.btn-success.ml-3(href="#") Sign up
+        a.btn.btn-success.ml-3(href="/register") Sign up

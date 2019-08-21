@@ -3,6 +3,32 @@
 import {showAlert} from './alerts'
 import axios from 'axios';
 
+export const signup = async (name, email, password, password_confirm) => {
+  console.log(name, email, password, password_confirm)
+
+  try {
+    const res = await axios({
+      method: 'POST',
+      url: 'http://localhost:3000/api/v1/users/signup',
+      data: {
+        name,
+        email,
+        password,
+        passwordConfirm: password_confirm
+      }
+    })
+
+    if (res.data.status === 'success') {
+      showAlert('success', 'Registered successfully');
+      window.setTimeout(() => {
+        location.assign('/overview');
+      }, 1500)
+    }
+  } catch (err) {
+      showAlert('danger', err.response.data.message)
+  }
+}
+
 
 export const login = async (email, password) => {
   console.log(email, password);
@@ -35,7 +61,7 @@ export const logout = async () => {
       url: 'http://localhost:3000/api/v1/users/logout',
     });
 
-    if (res.data.status === 'success') location.reload(true);
+    if (res.data.status === 'success') location.assign('/');
 
   } catch(err) {
     showAlert('danger', 'Error logging out. Try again!')
