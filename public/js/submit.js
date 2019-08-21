@@ -4,11 +4,10 @@ import {showAlert} from './alerts'
 import axios from 'axios';
 
 export const submit = async (title, body) => {
-  console.log(title, body);
   try {
     const res = await axios({
       method: 'POST',
-      url: 'http://localhost:3000/api/v1/notes',
+      url: '/api/v1/notes',
       data: {
         title,
         body,

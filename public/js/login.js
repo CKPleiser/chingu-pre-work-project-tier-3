@@ -4,12 +4,11 @@ import {showAlert} from './alerts'
 import axios from 'axios';
 
 export const signup = async (name, email, password, password_confirm) => {
-  console.log(name, email, password, password_confirm)
 
   try {
     const res = await axios({
       method: 'POST',
-      url: 'http://localhost:3000/api/v1/users/signup',
+      url: '/api/v1/users/signup',
       data: {
         name,
         email,
@@ -31,11 +30,10 @@ export const signup = async (name, email, password, password_confirm) => {
 
 
 export const login = async (email, password) => {
-  console.log(email, password);
   try {
     const res = await axios({
       method: 'POST',
-      url: 'http://localhost:3000/api/v1/users/login',
+      url: '/api/v1/users/login',
       data: {
         email,
         password
@@ -58,7 +56,7 @@ export const logout = async () => {
   try {
     const res = await axios({
       method: 'GET',
-      url: 'http://localhost:3000/api/v1/users/logout',
+      url: '/api/v1/users/logout',
     });
 
     if (res.data.status === 'success') location.assign('/');
@@ -72,7 +70,7 @@ export const deleteNote = async (id) => {
   try {
     const res = await axios({
       method: 'DELETE',
-      url: `http://localhost:3000/api/v1/notes/${id}`
+      url: `/api/v1/notes/${id}`
     });
 
     location.reload(true);

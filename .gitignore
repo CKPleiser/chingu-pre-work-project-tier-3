@@ -1,4 +1,5 @@
-config.env
+*.env
 .prettierrc
 .eslintrc.json
-/node_modules/
+node_modules/
+.cache/
