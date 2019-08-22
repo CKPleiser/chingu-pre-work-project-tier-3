@@ -23,8 +23,8 @@ export const signup = async (name, email, password, passwordConfirm) => {
         location.assign('/overview');
       }, 1500)
     }
-  } catch (err) {
-      showAlert('danger', err.response.data.message)
+  } catch(err) {
+    showAlert('danger', err.response.data.message)
   }
 }
 
