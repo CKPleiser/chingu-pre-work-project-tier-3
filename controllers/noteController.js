@@ -17,17 +17,5 @@ exports.getAllNotes = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.createNote = factory.createOne(Note);
 exports.deleteNote = factory.deleteOne(Note);
-
-exports.createNote = catchAsync(async (req, res, next) => {
-  // Allow nested routes
-  if (!req.body.user) req.body.user = req.user.id;
-  const newNote = await Note.create(req.body);
-
-  res.status(201).json({
-    status: 'success',
-    data: {
-      note: newNote
-    }
-  });
-});
