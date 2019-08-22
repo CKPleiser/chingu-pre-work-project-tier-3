@@ -9,5 +9,9 @@ router
   .get(authController.protect, noteController.getAllNotes)
   .post(authController.protect, noteController.createNote);
 
-router.route('/:id').delete(authController.protect, noteController.deleteNote);
+router
+  .route('/:id')
+  .delete(authController.protect, noteController.deleteNote)
+  .patch(authController.protect, noteController.updateNote);
+
 module.exports = router;

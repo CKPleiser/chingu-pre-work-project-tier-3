@@ -1,0 +1,17 @@
+form#update_note(action="." method="PATCH")
+  .form-group
+    label(for="title") Title:
+    input.form-control(
+      type="text"
+      id="title"
+      name="title"
+    )= note.title
+
+  .form-group
+    label(for="note") Body:
+    textarea.form-control(
+      id="note"
+      rows="3"
+    )
+
+  button.btn.btn-primary Submit

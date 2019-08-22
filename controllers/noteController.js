@@ -18,4 +18,5 @@ exports.getAllNotes = catchAsync(async (req, res, next) => {
 });
 
 exports.createNote = factory.createOne(Note);
+exports.updateNote = factory.updateOne(Note);
 exports.deleteNote = factory.deleteOne(Note);

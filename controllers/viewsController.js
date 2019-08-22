@@ -26,6 +26,15 @@ exports.getLoginForm = catchAsync(async (req, res) => {
   });
 });
 
+exports.getUpdateForm = catchAsync(async (req, res) => {
+  const note = Note.findById(req.params.id);
+
+  res.status(200).render('update', {
+    title: 'Update Note',
+    note
+  });
+});
+
 exports.getRegistrationForm = catchAsync(async (req, res) => {
   res.status(200).render('register', {
     title: 'Register for free'
