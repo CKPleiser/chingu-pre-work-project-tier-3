@@ -11,6 +11,7 @@ router
 
 router
   .route('/:id')
+  .get(authController.protect, noteController.getNote)
   .delete(authController.protect, noteController.deleteNote)
   .patch(authController.protect, noteController.updateNote);
 

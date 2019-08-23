@@ -79,3 +79,7 @@ export const deleteNote = async (id) => {
     showAlert('danger', 'You must be logged in to delete the note')
   }
 }
+
+export const editNote = async (id) => {
+  alert(id);
+}

@@ -1,6 +1,6 @@
 /* eslint-disable */
 import '@babel/polyfill';
-import { signup, login, logout, deleteNote } from './login'
+import { signup, login, logout, deleteNote, editNote } from './login'
 import { submit } from './submit'
 
 // DOM Elements;
@@ -42,13 +42,14 @@ if(deleteButtons.length) {
   }
 }
 
-if(editButtons.length) {
-  for (let i = 0; i < editButtons.length; i++) {
-    editButtons[i].addEventListener('click', function() {
-      alert('Sorry Chingu. Edit routes haven\'t been implemented yet' )
-    })
-  }
-}
+// if(editButtons.length) {
+//   for (let i = 0; i < editButtons.length; i++) {
+//     editButtons[i].addEventListener('click', function() {
+//       const id = this.getAttribute("data-id");
+//       editNote(id);
+//     })
+//   }
+// }
 
 if(submitForm) {
   submitForm.addEventListener('submit', e => {
