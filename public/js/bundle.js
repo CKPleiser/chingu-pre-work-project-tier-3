@@ -8310,7 +8310,7 @@ module.exports = require('./lib/axios');
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.editNote = exports.deleteNote = exports.logout = exports.login = exports.signup = void 0;
+exports.updateNote = exports.deleteNote = exports.logout = exports.login = exports.signup = void 0;
 
 var _alerts = require("./alerts");
 
@@ -8522,32 +8522,54 @@ function () {
 
 exports.deleteNote = deleteNote;
 
-var editNote =
+var updateNote =
 /*#__PURE__*/
 function () {
   var _ref5 = _asyncToGenerator(
   /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee5(id) {
+  regeneratorRuntime.mark(function _callee5(id, title, body) {
+    var res;
     return regeneratorRuntime.wrap(function _callee5$(_context5) {
       while (1) {
         switch (_context5.prev = _context5.next) {
           case 0:
-            alert(id);
+            _context5.prev = 0;
+            _context5.next = 3;
+            return (0, _axios.default)({
+              method: 'PATCH',
+              url: "/api/v1/notes/".concat(id),
+              data: {
+                id: id,
+                title: title,
+                body: body
+              }
+            });
 
-          case 1:
+          case 3:
+            res = _context5.sent;
+            if (res.data.status === 'success') location.assign('/overview');
+            _context5.next = 10;
+            break;
+
+          case 7:
+            _context5.prev = 7;
+            _context5.t0 = _context5["catch"](0);
+            (0, _alerts.showAlert)('danger', 'Cannot update this note. Does it belong to you?');
+
+          case 10:
           case "end":
             return _context5.stop();
         }
       }
-    }, _callee5);
+    }, _callee5, null, [[0, 7]]);
   }));
 
-  return function editNote(_x8) {
+  return function updateNote(_x8, _x9, _x10) {
     return _ref5.apply(this, arguments);
   };
 }();
 
-exports.editNote = editNote;
+exports.updateNote = updateNote;
 },{"./alerts":"alerts.js","axios":"../../node_modules/axios/index.js"}],"submit.js":[function(require,module,exports) {
 "use strict";
 
@@ -8878,9 +8900,9 @@ var _submit = require("./submit");
 var signupForm = document.querySelector('#signup');
 var loginForm = document.querySelector('#login');
 var submitForm = document.querySelector('#submit_note');
+var updateForm = document.querySelector('#update_note');
 var logoutBtn = document.querySelector('#logout');
 var deleteButtons = document.querySelectorAll('.btn-delete');
-var editButtons = document.querySelectorAll('.btn-edit');
 
 if (signupForm) {
   signupForm.addEventListener('submit', function (e) {
@@ -8902,6 +8924,16 @@ if (loginForm) {
   });
 }
 
+if (updateForm) {
+  updateForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var id = document.getElementById('id').value;
+    var title = document.getElementById('title').value;
+    var note = document.getElementById('note').value;
+    (0, _login.updateNote)(id, title, note);
+  });
+}
+
 if (logoutBtn) logoutBtn.addEventListener('click', _login.logout);
 
 if (deleteButtons.length) {
@@ -8911,15 +8943,7 @@ if (deleteButtons.length) {
       (0, _login.deleteNote)(id);
     });
   }
-} // if(editButtons.length) {
-//   for (let i = 0; i < editButtons.length; i++) {
-//     editButtons[i].addEventListener('click', function() {
-//       const id = this.getAttribute("data-id");
-//       editNote(id);
-//     })
-//   }
-// }
-
+}
 
 if (submitForm) {
   submitForm.addEventListener('submit', function (e) {
@@ -8957,7 +8981,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59023" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52102" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

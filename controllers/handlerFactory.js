@@ -31,7 +31,7 @@ exports.createOne = Model =>
 exports.updateOne = Model =>
   catchAsync(async (req, res, next) => {
     if (!req.body.user) req.body.user = req.user.id;
-    const doc = await Model.findByIdAndUpdate(req.params.id, req.body, {
+    const doc = await Model.findByIdAndUpdate(req.body.id, req.body, {
       new: true,
       runValidators: true
     });

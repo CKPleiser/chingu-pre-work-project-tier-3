@@ -1,17 +1,31 @@
-form#update_note(action="." method="PATCH")
-  .form-group
-    label(for="title") Title:
-    input.form-control(
-      type="text"
-      id="title"
-      name="title"
-    )= note.title
+extends base
 
-  .form-group
-    label(for="note") Body:
-    textarea.form-control(
-      id="note"
-      rows="3"
-    )
+block content
+  h1= title
+  form#update_note()
+    .form-group
+      input.form-control(
+        type='hidden',
+        id='id'
+        name='id',
+        value=note._id
+      )
+      label(for="title") Title:
+      input.form-control(
+        type="text"
+        id="title"
+        name="title"
+        value=note.title
+      )
 
-  button.btn.btn-primary Submit
+    .form-group
+      label(for="note") Body:
+      textarea.form-control(
+        id="note"
+        rows="3"
+      )
+        =note.body
+
+    button.btn.btn-primary Update
+
+

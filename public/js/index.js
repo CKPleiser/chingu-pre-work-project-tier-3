@@ -1,15 +1,16 @@
 /* eslint-disable */
 import '@babel/polyfill';
-import { signup, login, logout, deleteNote, editNote } from './login'
+import { signup, login, logout, deleteNote, updateNote } from './login'
 import { submit } from './submit'
 
 // DOM Elements;
 const signupForm = document.querySelector('#signup');
 const loginForm = document.querySelector('#login');
 const submitForm = document.querySelector('#submit_note');
+const updateForm = document.querySelector('#update_note');
 const logoutBtn = document.querySelector('#logout');
 const deleteButtons = document.querySelectorAll('.btn-delete');
-const editButtons = document.querySelectorAll('.btn-edit');
+
 
 if(signupForm) {
   signupForm.addEventListener('submit', e => {
@@ -31,6 +32,16 @@ if(loginForm) {
   });
 }
 
+if(updateForm) {
+  updateForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const id = document.getElementById('id').value;
+    const title = document.getElementById('title').value;
+    const note = document.getElementById('note').value;
+    updateNote(id, title, note);
+  });
+}
+
 if(logoutBtn) logoutBtn.addEventListener('click', logout )
 
 if(deleteButtons.length) {
@@ -41,15 +52,6 @@ if(deleteButtons.length) {
     })
   }
 }
-
-// if(editButtons.length) {
-//   for (let i = 0; i < editButtons.length; i++) {
-//     editButtons[i].addEventListener('click', function() {
-//       const id = this.getAttribute("data-id");
-//       editNote(id);
-//     })
-//   }
-// }
 
 if(submitForm) {
   submitForm.addEventListener('submit', e => {

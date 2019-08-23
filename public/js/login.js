@@ -70,7 +70,8 @@ export const deleteNote = async (id) => {
   try {
     const res = await axios({
       method: 'DELETE',
-      url: `/api/v1/notes/${id}`
+      url: `/api/v1/notes/${id}`,
+
     });
 
     location.reload(true);
@@ -80,6 +81,19 @@ export const deleteNote = async (id) => {
   }
 }
 
-export const editNote = async (id) => {
-  alert(id);
+export const updateNote = async (id, title, body) => {
+  try {
+    const res = await axios({
+      method: 'PATCH',
+      url: `/api/v1/notes/${id}`,
+      data: {
+        id,
+        title,
+        body
+      }
+    })
+    if (res.data.status === 'success') location.assign('/overview');
+  } catch(err) {
+    showAlert('danger', 'Cannot update this note. Does it belong to you?')
+  }
 }

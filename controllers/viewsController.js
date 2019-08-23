@@ -27,7 +27,7 @@ exports.getLoginForm = catchAsync(async (req, res) => {
 });
 
 exports.getUpdateForm = catchAsync(async (req, res) => {
-  const note = Note.findById(req.params.id);
+  const note = await Note.findById(req.params.id);
 
   res.status(200).render('update', {
     title: 'Update Note',

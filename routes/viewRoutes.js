@@ -9,6 +9,7 @@ router.use(authController.isLoggedIn);
 router.get('/', viewsController.home);
 router.get('/overview', authController.protect, viewsController.getOverview);
 router.get('/login', viewsController.getLoginForm);
+router.get('/update/:id', viewsController.getUpdateForm);
 router.get('/register', viewsController.getRegistrationForm);
 
 module.exports = router;

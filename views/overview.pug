@@ -12,5 +12,5 @@ block content
             p.card-text= note.body
             .btn-group
               button.btn.btn-link.btn-edit(data-id=note.id)
-                a(href=`/notes/${note.id}`) Edit
+                a(href=`/update/${note.id}`) Edit
               button.btn.btn-danger.btn-delete(data-id=note.id) Delete
