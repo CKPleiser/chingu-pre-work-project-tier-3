@@ -1,6 +1,9 @@
 /* eslint-disable */
 const mongoose = require('mongoose');
-if (process.env.NODE_ENV !== 'production') require('dotenv').config({ path: './config.env' });
+const dotenv = require('dotenv');
+
+
+dotenv.config({ path: './config.env' });
 
 process.on('uncaughtException', err => {
   console.log('UNCAUGHT EXCEPTION! Shutting down...');

@@ -21,6 +21,11 @@ const noteSchema = new mongoose.Schema({
   }
 });
 
+noteSchema.post('save', function(doc, next) {
+  console.log(doc);
+  next();
+});
+
 const Note = mongoose.model('Note', noteSchema);
 
 module.exports = Note;
