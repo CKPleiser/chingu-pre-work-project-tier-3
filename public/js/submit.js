@@ -14,7 +14,7 @@ export const submit = async (title, body) => {
       }
     });
 
-    if(res.data.status === 'success') location.reload(true)
+    if(res.data.status === 'success') location.assign('/overview')
   } catch(err) {
     showAlert('danger', err.response.data.message)
   }

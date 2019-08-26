@@ -7,7 +7,11 @@ const router = express.Router({ mergeParams: true });
 router
   .route('/')
   .get(authController.protect, noteController.getAllNotes)
-  .post(authController.protect, noteController.createNote);
+  .post(
+    authController.protect,
+    noteController.setUserId,
+    noteController.createNote
+  );
 
 router
   .route('/:id')
