@@ -40,7 +40,7 @@
     "dotenv": "^8.0.0",
     "jsonwebtoken": "^8.5.1",
     "login": "^0.8.0",
-    "mongoose": "^5.6.9",
+    "mongoose": "^5.7.5",
     "morgan": "^1.9.1",
     "pug": "^2.0.4",
     "validator": "^11.1.0",
