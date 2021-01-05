@@ -27,7 +27,7 @@
   "homepage": "https://github.com/CKPleiser/chingu-pre-work-project-tier-3#readme",
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^4.3.1",
     "compression": "^1.7.4",
